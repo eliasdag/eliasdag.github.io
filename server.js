@@ -1,6 +1,7 @@
 const https = require('https');
 const http = require('http');
 const url = require('url');
+var fs = require('fs');
 
 //expires every 24 hours.
 const apiKey = 'RGAPI-38981d7f-58cd-421c-9688-aa0fdc141128';
@@ -16,11 +17,33 @@ const server = http.createServer((request, response) => {
     const parts = url.parse(request.url, true);
     const query = parts.query;
     const summonerName = query.summonerName;
+
+    //function to retrieve front end sname input
+    // const summonerName = getValue(snames);
+
+    //display HTML
+    response.writeHead(200, {'Content-Type': text/plain});
+    fs.readFile('./index.html', null, function(error, data) {
+        if (error){
+            response.writeHead(404);
+            response.write("file not found");
+        } else {
+            response.write(data);
+        }
+        reponse.end();
+    });
     // function to make actual api call 
     makeAPICall(summonerName, response)
 });
 
 server.listen(PORT, () => console.log("Server is listening on port %s", PORT));
+
+// function getValue (id) {
+//     text = document.getElementById(id).value; //value of the text input
+//     alert(text);
+//     document.getElementById(id).value = '';
+//     return false;
+// }
 
 function makeAPICall(summonerName, response) {
     //url inside function so we can specify summonerName as a parameter
