@@ -22,7 +22,7 @@ const server = http.createServer((request, response) => {
     // const summonerName = getValue(snames);
 
     //display HTML
-    response.writeHead(200, {'Content-Type': text/plain});
+    response.writeHead(200, {'Content-Type': text/html});
     fs.readFile('./index.html', null, function(error, data) {
         if (error){
             response.writeHead(404);
